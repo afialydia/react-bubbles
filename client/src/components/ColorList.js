@@ -6,7 +6,7 @@ const initialColor = {
 	code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
+const ColorList = ({ colors, updateColors, fetchColors }, props) => {
 	console.log(colors);
 	const [editing, setEditing] = useState(false);
 	const [colorToEdit, setColorToEdit] = useState(initialColor);
@@ -23,7 +23,9 @@ const ColorList = ({ colors, updateColors }) => {
 			.put(`/api/colors/${colorToEdit.id}`, { ...colorToEdit })
 			.then(res => {
 				console.log(res);
+				fetchColors(res);
 			})
+
 			.catch(err => console.log(err.response));
 		// Make a put request to save your updated color
 		// think about where will you get the id from...
@@ -36,7 +38,7 @@ const ColorList = ({ colors, updateColors }) => {
 			.delete(`/api/colors/${color.id}`)
 			.then(res => {
 				console.log(res);
-				color.history.push(`/bubblespage`);
+				fetchColors(res);
 			})
 			.catch(err => console.log(err.response));
 	};
