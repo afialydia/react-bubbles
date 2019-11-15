@@ -26,10 +26,10 @@ const NewColor = ({ updateColors }) => {
     };
 
     return (
-        <div className="new-color-form">
+        <div className="newColor-form">
             <form onSubmit={handleSubmit}>
-                <input type="text" name="color" value={newColor.color} onChange={handleChanges} placeholder="Color Name" />
-                <input type="text" name="code" value={newColor.code} onChange={handleChanges} placeholder="Color Code" />
+                <input type="text" name="color" className="newColor-input" value={newColor.color} onChange={handleChanges} placeholder="Color Name" />
+                <input type="text" className="newColor-input" name="code" value={newColor.code} onChange={handleChanges} placeholder="Color Code" />
                 <button type="submit">Add Color</button>
             </form>
         </div>
