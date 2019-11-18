@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import NewColor from './newColor'
 
 const initialColor = {
 	color: "",
@@ -7,7 +8,7 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors, fetchColors }, props) => {
-	console.log(colors);
+	// console.log(colors);
 	const [editing, setEditing] = useState(false);
 	const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -37,11 +38,12 @@ const ColorList = ({ colors, updateColors, fetchColors }, props) => {
 		axiosWithAuth()
 			.delete(`/api/colors/${color.id}`)
 			.then(res => {
-				console.log(res);
+				// console.log(res);
 				fetchColors(res);
 			})
 			.catch(err => console.log(err.response));
 	};
+
 
 	return (
 		<div className="colors-wrap">
@@ -91,9 +93,12 @@ const ColorList = ({ colors, updateColors, fetchColors }, props) => {
 						<button onClick={() => setEditing(false)}>cancel</button>
 					</div>
 				</form>
-			)}
+			)}		
+			
+			<NewColor updateColors={updateColors}/>
+
 			<div className="spacer" />
-			{/* stretch - build another form here to add a color */}
+			
 		</div>
 	);
 };
